@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/exemplo-jsf">
+  <Resource auth="Container" driverClassName="org.postgresql.Driver" logAbandoned="true" maxActive="5" maxIdle="3" maxWait="10000" name="jdbc/exemplo-jsf" password="aluno01" removeAbandoned="true" type="javax.sql.DataSource" url="jdbc:postgresql://dev.ct.utfpr.edu.br/inscricao" username="aluno01"/>
+</Context>

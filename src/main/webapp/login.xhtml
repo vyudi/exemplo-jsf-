@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:ice="http://www.icesoft.com/icefaces/component"
+                xmlns:comps="http://java.sun.com/jsf/composite/util"
+                template="./WEB-INF/templates/layout.xhtml">
+
+    <ui:define name="metadata"/>
+    <ui:define name="styles"/>
+    <ui:define name="javascript"/>
+
+    <ui:define name="content">
+        <ice:form>
+            <comps:login usuario="" senha="" layoutVertical="true"/><br/>
+            <ice:commandButton value="Entrar"/>
+        </ice:form>
+    </ui:define>
+
+</ui:composition>

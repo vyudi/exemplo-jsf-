@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <f:view>
+        <ice:loadBundle basename="inscricao.config.version" var="versao"/>
+        <ui:insert name="metadata"/>
+        <h:head>
+            <ui:insert name="styles"/>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <link rel="stylesheet" type="text/css" href="./xmlhttp/css/rime/rime.css"/>
+            <link href="./css/default.css" rel="stylesheet" type="text/css" />
+            <link href="./css/cssLayout.css" rel="stylesheet" type="text/css" />
+            <link href="./css/inscricao.css" rel="stylesheet" type="text/css" />
+            <title>IF6AE - Exemplo JSF</title>
+        </h:head>
+
+        <h:body>
+            <ui:insert name="javascript"/>
+            <table class="table_layout">
+                <tr>
+                    <td class="left_filler"/>
+                    <td id="top">
+                        <ui:insert name="top">
+                            <a href="http://www.ct.utfpr.edu.br" target="_blank"><img src="imagens/header.jpg" alt=""/></a>
+                        </ui:insert>
+                    </td>
+                    <td class="right_filler"/>
+                </tr>
+                <tr>
+                    <td class="left_filler"/>
+                    <td id="content">
+                        <ui:insert name="content">Content</ui:insert>
+                    </td>
+                    <td class="right_filler"/>
+                </tr>
+                <tr id="bottom">
+                    <td class="left_filler"/>
+                    <td>
+                        <ui:insert name="bottom">
+                            <div class="bottom_content">
+                                <div>#{versao['calem.name']} #{versao['calem.version']} [#{versao['calem.buildTimestamp']}] | 
+                                    <a href="#{versao['calem.trackerURL']}" target="_blank">Acompanhar</a> | 
+                                    <a href="#{versao['calem.helpdeskURL']}" target="_blank">Reportar um problema</a> |
+                                    <a href="#{versao['calem.helpURL']}" target="_blank">Ajuda</a>
+                                </div>
+                                <a href="#{versao['calem.urlCOGETI']}" target="_blank">COGETI-CT - Coordenadoria de Gestão de Tecnologia da Informação</a>
+                            </div>
+                        </ui:insert>
+                    </td>
+                    <td class="right_filler"/>
+                </tr>
+            </table>
+        </h:body>
+    </f:view>
+</html>

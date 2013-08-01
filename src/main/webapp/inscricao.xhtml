@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ice="http://www.icesoft.com/icefaces/component"
+                xmlns:ace="http://www.icefaces.org/icefaces/components"
+                template="./WEB-INF/templates/layout.xhtml">
+
+    <ui:define name="styles">
+        <style type="text/css">
+            .titulo-form {
+                font-size: 14pt;
+                font-weight: bold;
+                margin: 10px 0;
+            }
+            .iceOutLbl {
+                display: inline-block;
+                margin-left: 4px;
+                width: 50px;
+            }
+            
+            .icePnlGrp {
+                margin-top: 4px;
+            }
+        </style>
+    </ui:define>
+    
+    <ui:define name="metadata">
+    </ui:define>
+
+    <ui:define name="javascript">
+    </ui:define>
+
+    <ui:define name="content">
+        <ice:form>
+            <div class="titulo-form">FICHA DE INSCRIÇÃO</div>
+            <ice:panelGroup style="text-align: left; margin-bottom: 10px;">
+                <ice:outputLabel for="idioma" value="Idioma"/>
+                <ice:selectOneMenu id="idioma" value="#{inscricaoBean.candidato.idioma.codigo}" style="width:12em" styleClass="ui-selectonemenu">
+                    <f:selectItems value="#{inscricaoBean.idiomaItemList}"/>
+                </ice:selectOneMenu>
+                <ice:panelGroup>
+                    <ice:outputLabel for="cpf" value="CPF"/>
+                    <ace:maskedEntry id="cpf" value="#{inscricaoBean.candidato.cpf}"  mask="999999999-99"
+                                     label="CPF" size="15" required="true" converter="#{inscricaoBean.cpfConverter}">
+                        <f:validator binding="#{inscricaoBean.cpfValidator}"/>
+                    </ace:maskedEntry>
+                    <ice:outputLabel for="rg" value="RG"/>
+                    <ice:inputText id="rg" value="#{inscricaoBean.candidato.rg}" size="25"
+                         styleClass="ui-inputfield" label="RG" maxlength="20" required="true"/>
+                </ice:panelGroup>
+                <ice:panelGroup>
+                    <ice:outputLabel for="nome" value="Nome"/>
+                    <ice:inputText id="nome" value="#{inscricaoBean.candidato.nome}" size="50"
+                         styleClass="ui-inputfield" label="Nome" maxlength="100" required="true"/>
+                </ice:panelGroup>
+                <ice:panelGroup>
+                    <ice:outputLabel for="endereco" value="Endereço"/>
+                    <ice:inputText id="endereco" value="#{inscricaoBean.candidato.endereco}" size="50"
+                          styleClass="ui-inputfield" label="Endereço" maxlength="80" required="true"/>
+                </ice:panelGroup>
+                <ice:panelGroup>
+                    <ice:outputLabel for="cidade" value="Cidade"/>
+                    <ice:inputText id="cidade" value="#{inscricaoBean.candidato.cidade}" size="50"
+                            styleClass="ui-inputfield" label="cidade" maxlength="50" required="true"/>
+                    <ice:outputLabel for="estado" value="Estado"/>
+                    <ice:inputText id="estado" value="#{inscricaoBean.candidato.estado}" size="4"
+                            styleClass="ui-inputfield" label="Estado" maxlength="2" required="true"/>
+                </ice:panelGroup>
+                <ice:panelGroup>
+                    <ice:outputLabel for="cep" value="CEP"/>
+                    <ace:maskedEntry id="cep" value="#{inscricaoBean.candidato.cep}" mask="99999-999"
+                                     label="CEP" size="10" required="true" converter="#{inscricaoBean.cepConverter}"/>
+                    <ice:outputLabel for="bairro" value="Bairro"/>
+                    <ice:inputText id="bairro" value="#{inscricaoBean.candidato.bairro}" size="30"
+                            styleClass="ui-inputfield" label="Bairro" maxlength="50"/>
+                </ice:panelGroup>
+                <ice:panelGroup>
+                    <ice:outputLabel for="fone" value="Fone"/>
+                    <ace:maskedEntry id="fone" value="#{inscricaoBean.candidato.fone}" mask="(99) 9999-9999"
+                        label="Fone" size="15"/>
+                    <ice:outputLabel for="celular" value="Celular"/>
+                    <ace:maskedEntry id="celular" value="#{inscricaoBean.candidato.celular}" mask="(99) 9999-9999"
+                        label="Celular" size="15"/>
+                </ice:panelGroup>
+                <ice:panelGroup>
+                    <ice:outputLabel for="email" value="E-mail"/>
+                    <ice:inputText id="email" value="#{inscricaoBean.candidato.email}" size="80"
+                          styleClass="ui-inputfield" label="E-mail" maxlength="200" required="true"/>
+                </ice:panelGroup>
+                <ice:panelGroup>
+                    <ice:outputLabel for="instituicao" value="Instituição"/>
+                    <ice:inputText id="instituicao" value="#{inscricaoBean.candidato.instituicao}" size="80"
+                          styleClass="ui-inputfield" label="Instituição" maxlength="100" required="true"/>
+                </ice:panelGroup>
+                <ice:panelGroup>
+                    <ice:outputLabel for="programa" value="Programa"/>
+                    <ice:inputText id="programa" value="#{inscricaoBean.candidato.programa}" size="80"
+                          styleClass="ui-inputfield" label="Programa" maxlength="100" required="true"/>
+                </ice:panelGroup>
+            </ice:panelGroup>
+            <ice:commandButton value="Confirmar Inscrição" action="#{inscricaoBean.inscricaoAction}"/>
+            <ice:panelGroup>
+                <ice:outputLink value="http://consulta.tesouro.fazenda.gov.br/gru/gerarHTML.asp" target="_blank" rendered="#{inscricaoBean.linkGRUVisivel}">
+                    <ice:outputText value="Gerar GRU para Pagamento"/>
+                    <f:param name="codigo_favorecido" value="154358"/>
+                    <f:param name="gestao" value="15246"/>
+                    <f:param name="codigo_correlacao" value="1213"/>
+                    <f:param name="nome_favorecido" value="UTFPR - CAMPUS CURITIBA"/>
+                    <f:param name="codigo_recolhimento" value="28832-2"/>
+                    <f:param name="nome_recolhimento" value="DALEM"/>
+                    <f:param name="referencia" value="24000000000000000000"/>
+                    <f:param name="competencia" value="#{inscricaoBean.competencia}"/>
+                    <f:param name="vencimento" value="#{inscricaoBean.dataVencimento}"/>
+                    <f:param name="boleto" value="3"/>
+                    <f:param name="impressao" value="sa"/>
+                    <f:param name="campo" value="nrcr"/>
+                    <f:param name="ind" value="0"/>
+                    <f:param name="valorPrincipal" value="100,00"/>
+                    <f:param name="valorTotal" value="100,00"/>
+                    <f:param name="cnpj_cpf" value="#{inscricaoBean.candidato.cpf}"/>
+                </ice:outputLink>
+            </ice:panelGroup>
+            <ice:messages/>
+        </ice:form>
+    </ui:define>
+
+</ui:composition>
